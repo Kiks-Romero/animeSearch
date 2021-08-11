@@ -1,0 +1,18 @@
+
+
+.listado{
+    color: blue;
+    width: 300px;
+    height: 500px;
+    display: block;
+    float:left;
+    overflow: hidden;
+    padding: 10px;
+
+}
+
+.borderCard{
+    border-style: dashed;
+    border-width: 2px;
+    border-color: black;
+}
