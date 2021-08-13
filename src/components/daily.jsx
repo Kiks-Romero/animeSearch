@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Preview from "./preview";
 import Tarjeta from "./Tarjeta";
 import { infoDias } from "./Peticiones";
-
+import { Grid } from "@material-ui/core";
 
 function fecha() {
   const fecha = new Date(),
@@ -58,27 +58,47 @@ class Dayly extends Component {
     }
     return (
       <>
-        <Tarjeta infoTarjeta={this.state.seleccion}/>           
-            
-            {this.state.dayInfo ? (
-              <h3>{this.props.datos.dia}</h3>
-            ) : (
-              <h3>Seleccion diaria</h3>
-            )}
+        {this.state.seleccion.title ? (
+          <Tarjeta infoTarjeta={this.state.seleccion} />
+        ) : (
+          <Grid container spacing={1}>
+            <Grid
+              container
+              spacing={1}
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              alignContent="center"
+              wrap="nowrap"
+            >
+              {this.state.dayInfo ? (
+                <h3>{this.props.datos.dia}</h3>
+              ) : (
+                <h3>Seleccion diaria</h3>
+              )}
+            </Grid>
 
             {info.map((item) => {
-              return (   
-               
-                  <ul className="listado" onClick={() => this._handleClock(item)}>
-                     
-                      <Preview className="borderCard" datos={item} key={item.mal_id} />
-                       
-                  </ul>  
-                        
-                            
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={3}
+                  className="listado"
+                  onClick={() => this._handleClock(item)}
+                >
+                  <Preview
+                    className="borderCard"
+                    datos={item}
+                    key={item.mal_id}
+                  />
+                </Grid>
               );
-            })}  
-          </>              
+            })}
+          </Grid>
+        )}
+      </>
     );
   }
 }

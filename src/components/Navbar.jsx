@@ -13,25 +13,24 @@ import SearchIcon from "@material-ui/icons/Search"
 const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
-    marginLeft: 240
+    [theme.breakpoints.up('sm')]:{
+      display:'none',
+    }
   },
   title: {
     flexGrow: 1,
   },
   appBar: {
-    width: `calc(100%-${240}px)`,
-    marginLeft: 240   
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${240}px)`,
+      marginLeft: 240,
+    },
   },
 }));
 
 const Navbar = (props) => {
   const [busqueda, setbusqueda] = useState('');
-  
-  // function _change(e){
-  //   let entrada = e.target.value
-  //   console.log(entrada,"webos");
 
-  // }
   function handleChange(value){
     setbusqueda(value)
   }
@@ -46,40 +45,31 @@ const Navbar = (props) => {
   return (
     <AppBar className={classes.appBar}>
       <Toolbar>
-        <IconButton color="inherit" className={classes.menuButton} aria-label="menu">
+        <IconButton 
+          color="inherit" 
+          className={classes.menuButton} 
+          aria-label="open drawer"
+          edge="start"
+          onClick={()=>props.accionAbrir()}
+        >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
+        <Typography variant="h6" noWrap className={classes.title}>
           Anime
         </Typography>
-          <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
+          <Paper component="form" onSubmit={handleSubmit}>
           <InputBase
-            className={classes.input}
-            placeholder="Que anime buscas..."
+            placeholder="   Que anime buscas?"
             inputProps={{ 'aria-label': 'Que anime buscas...' }}
             onChange={data=>handleChange(data.target.value) }
           />
           <IconButton 
             type="submit" 
-            className={classes.iconButton} 
             aria-label="search"
             >
             <SearchIcon />
           </IconButton>
           </Paper>
-        
-
-        {/* <TextField 
-          color="primary"
-          id="outlined-search"
-          label="Search Field"
-          type="search"
-          variant="outlined"
-          onChange={(data)=>props.handleSearch(data)}
-        />   */}
-        {/* <Button variant="text" color="inherit">
-          Login
-        </Button> */}
       </Toolbar>
     </AppBar>
   );

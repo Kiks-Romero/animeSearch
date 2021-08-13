@@ -24,6 +24,7 @@ const estilos = makeStyles((theme) => ({
 function Contenedor() {
   const [dayInfo, setdayInfo] = useState({});
   const [valueSearch, setvalueSearch] = useState("");
+  const [abrir, setabrir] = useState(false);
 
   function handleContenedor(e) {
     //console.log(e,"webs");
@@ -34,22 +35,41 @@ function Contenedor() {
     setvalueSearch(e);
   }
 
+  const accionAbrir = () => {
+    setabrir(!abrir);
+  };
+
   const classes = estilos();
 
   return (
     <div className={classes.root}>
-      <Navbar handleSearch={handleSearch} />
+      <Navbar handleSearch={handleSearch} accionAbrir={accionAbrir} />
       <Hidden xsDown>
-        <Cajon handleContenedor={handleContenedor} />
+        <Cajon
+          handleContenedor={handleContenedor}
+          variant="permanent"
+          open={abrir}
+        />
       </Hidden>
-      <div className={classes.content}>
-        <div className={classes.toolbar}></div>
-            
-              <Search search={valueSearch} />
-            
+      <Hidden smUp>
+        <Cajon
+          handleContenedor={handleContenedor}
+          variant="temporary"
+          open={abrir}
+          onClose={accionAbrir}
+        />
+      </Hidden>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        
+        {!!valueSearch
+        ?<Search search={valueSearch} />
+        :<Daily datos={dayInfo} />
+        }
+        
 
-              <Daily datos={dayInfo} />
-      </div>
+        
+      </main>
     </div>
   );
 }

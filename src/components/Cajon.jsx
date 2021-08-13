@@ -1,5 +1,9 @@
 import React from "react";
-import { makeStyles, Drawer, Divider } from "@material-ui/core";
+import { 
+  makeStyles,
+  Drawer,
+  Divider
+} from "@material-ui/core";
 import Listas from "./Listas";
 
 const estilos = makeStyles((theme) => ({
@@ -18,12 +22,14 @@ function Cajon(props){
   const {handleContenedor}= props
   return (
     <Drawer
-      className={classes.drawer}
-      variant="permanent"
+      className={classes.drawer}     
       classes={{
         paper: classes.drawerpaper,
       }}
       anchor="left"
+      variant={props.variant}
+      open={props.open}
+      onClose={props.onClose?props.onClose:null}
     >
       <div className={classes.toolbar}></div>
       <Divider />

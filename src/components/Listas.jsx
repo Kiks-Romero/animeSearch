@@ -7,7 +7,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
-import ComputerIcon from "@material-ui/icons/Computer";
+import HomeIcon from '@material-ui/icons/Home';
 import { dias } from "../data/data.json";
 import { Component } from "react";
 
@@ -37,9 +37,9 @@ class Listas extends Component {
           <Divider />
           <ListItem button>
             <ListItemIcon>
-              <ComputerIcon />
+              <HomeIcon/>
             </ListItemIcon>
-            <ListItemText primary="Todo" />
+            <ListItemText primary="Home" />
           </ListItem>
         </List>
       </div>

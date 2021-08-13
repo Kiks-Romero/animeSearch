@@ -7,7 +7,7 @@ import {
   Typography,
   CardActions,
   IconButton,
-  Collapse,
+  Collapse, Grid,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
@@ -37,14 +37,17 @@ function Tarjeta(props) {
     setExpanded(!expanded);
   };
   return (
-    
-    // <>
-    // <h2>cerda</h2>
-    // {console.log(props,"tarjeta")}
-
-
-    // </>
-    <>
+    <Grid
+      container
+      spacing={1}
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      alignContent="center"
+      wrap="nowrap"
+      
+    >
+      {console.log(props)}
       <Card className={classes.root}>
         <CardHeader
           title={props.infoTarjeta.title}
@@ -75,12 +78,15 @@ function Tarjeta(props) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>puerco</Typography>
-            <Typography paragraph>Cerdo</Typography>
+            <Typography paragraph>Clasificacion: {props.infoTarjeta.rated}</Typography>
+            <Typography paragraph>Calificacion: {props.infoTarjeta.score}</Typography>
+            <Typography paragraph>Tipo: {props.infoTarjeta.type}</Typography>
+            <Typography paragraph>Episodios: {props.infoTarjeta.episodes}</Typography>
+            
           </CardContent>
         </Collapse>
       </Card>
-    </>
+    </Grid>
   );
 }
 
