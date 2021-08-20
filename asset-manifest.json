@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/animeSearch/static/css/main.8d365e2a.chunk.css",
-    "main.js": "/animeSearch/static/js/main.51e6a28e.chunk.js",
-    "main.js.map": "/animeSearch/static/js/main.51e6a28e.chunk.js.map",
-    "runtime-main.js": "/animeSearch/static/js/runtime-main.fb02696e.js",
-    "runtime-main.js.map": "/animeSearch/static/js/runtime-main.fb02696e.js.map",
-    "static/js/2.caf2f93c.chunk.js": "/animeSearch/static/js/2.caf2f93c.chunk.js",
-    "static/js/2.caf2f93c.chunk.js.map": "/animeSearch/static/js/2.caf2f93c.chunk.js.map",
-    "static/js/3.cff53756.chunk.js": "/animeSearch/static/js/3.cff53756.chunk.js",
-    "static/js/3.cff53756.chunk.js.map": "/animeSearch/static/js/3.cff53756.chunk.js.map",
+    "main.js": "/animeSearch/static/js/main.447ff93c.chunk.js",
+    "main.js.map": "/animeSearch/static/js/main.447ff93c.chunk.js.map",
+    "runtime-main.js": "/animeSearch/static/js/runtime-main.c6371a51.js",
+    "runtime-main.js.map": "/animeSearch/static/js/runtime-main.c6371a51.js.map",
+    "static/js/2.73749b15.chunk.js": "/animeSearch/static/js/2.73749b15.chunk.js",
+    "static/js/2.73749b15.chunk.js.map": "/animeSearch/static/js/2.73749b15.chunk.js.map",
+    "static/js/3.b92df0ae.chunk.js": "/animeSearch/static/js/3.b92df0ae.chunk.js",
+    "static/js/3.b92df0ae.chunk.js.map": "/animeSearch/static/js/3.b92df0ae.chunk.js.map",
     "index.html": "/animeSearch/index.html",
     "static/css/main.8d365e2a.chunk.css.map": "/animeSearch/static/css/main.8d365e2a.chunk.css.map",
-    "static/js/2.caf2f93c.chunk.js.LICENSE.txt": "/animeSearch/static/js/2.caf2f93c.chunk.js.LICENSE.txt"
+    "static/js/2.73749b15.chunk.js.LICENSE.txt": "/animeSearch/static/js/2.73749b15.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.fb02696e.js",
-    "static/js/2.caf2f93c.chunk.js",
+    "static/js/runtime-main.c6371a51.js",
+    "static/js/2.73749b15.chunk.js",
     "static/css/main.8d365e2a.chunk.css",
-    "static/js/main.51e6a28e.chunk.js"
+    "static/js/main.447ff93c.chunk.js"
   ]
 }
