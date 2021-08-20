@@ -27,6 +27,7 @@ class Dayly extends Component {
       info: [], //contiene los datos del fetch o peticion
       seleccion: {}, //al seleccionar una tarjeta se modifica
       dayInfo: "", //trae info del padre
+      active:false
     };
   }
 
@@ -58,27 +59,28 @@ class Dayly extends Component {
     }
     return (
       <>
-        {this.state.seleccion.title ? (
-          <Tarjeta infoTarjeta={this.state.seleccion} />
-        ) : (
-          <Grid container spacing={1}>
-            <Grid
-              container
-              spacing={1}
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              alignContent="center"
-              wrap="nowrap"
-            >
-              {this.state.dayInfo ? (
-                <h3>{this.props.datos.dia}</h3>
-              ) : (
-                <h3>Seleccion diaria</h3>
-              )}
-            </Grid>
-
-            {info.map((item) => {
+        <Grid container spacing={1}>
+          <Grid
+            container
+            spacing={1}
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            alignContent="center"
+            wrap="nowrap"
+          >
+            {this.state.dayInfo ? (
+              <h3>{this.props.datos.dia}</h3>
+            ) : (
+              <h3>Seleccion diaria</h3>
+            )}
+          </Grid>
+          {this.state.seleccion.title ? (
+            <>
+              <Tarjeta infoTarjeta={this.state.seleccion} />
+            </>
+          ) : (
+            info.map((item) => {
               return (
                 <Grid
                   item
@@ -95,9 +97,9 @@ class Dayly extends Component {
                   />
                 </Grid>
               );
-            })}
-          </Grid>
-        )}
+            })
+          )}
+        </Grid>
       </>
     );
   }

@@ -1,27 +1,29 @@
 import React, { useState } from "react";
-import { makeStyles,
-      IconButton,
-      AppBar,
-      Toolbar,
-      Typography,
-      Paper,
-      InputBase
-    } from "@material-ui/core";
+import {
+  makeStyles,
+  IconButton,
+  AppBar,
+  Toolbar,
+  Typography,
+  Paper,
+  InputBase,
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search"
+import SearchIcon from "@material-ui/icons/Search";
 
-const useStyles = makeStyles(theme => ({
+
+const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]:{
-      display:'none',
-    }
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
   },
   title: {
     flexGrow: 1,
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${240}px)`,
       marginLeft: 240,
     },
@@ -29,47 +31,45 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Navbar = (props) => {
-  const [busqueda, setbusqueda] = useState('');
+  const [busqueda, setbusqueda] = useState("");
 
-  function handleChange(value){
-    setbusqueda(value)
+  function handleChange(value) {
+    setbusqueda(value);
   }
 
-  function handleSubmit(e){
-    e.preventDefault()
-    return props.handleSearch(busqueda)
+  function handleSubmit(e) {
+    e.preventDefault();
+    return props.handleSearch(busqueda);
   }
-
 
   const classes = useStyles();
   return (
     <AppBar className={classes.appBar}>
       <Toolbar>
-        <IconButton 
-          color="inherit" 
-          className={classes.menuButton} 
+        <IconButton
+          color="inherit"
+          className={classes.menuButton}
           aria-label="open drawer"
           edge="start"
-          onClick={()=>props.accionAbrir()}
+          onClick={() => props.accionAbrir()}
         >
           <MenuIcon />
         </IconButton>
+
         <Typography variant="h6" noWrap className={classes.title}>
           Anime
         </Typography>
-          <Paper component="form" onSubmit={handleSubmit}>
+        <Paper component="form" onSubmit={handleSubmit}>
           <InputBase
             placeholder="   Que anime buscas?"
-            inputProps={{ 'aria-label': 'Que anime buscas...' }}
-            onChange={data=>handleChange(data.target.value) }
+            inputProps={{ "aria-label": "Que anime buscas..." }}
+            onChange={(data) => handleChange(data.target.value)}
           />
-          <IconButton 
-            type="submit" 
-            aria-label="search"
-            >
-            <SearchIcon />
+          <IconButton type="submit" aria-label="search">
+            
+              <SearchIcon />           
           </IconButton>
-          </Paper>
+        </Paper>
       </Toolbar>
     </AppBar>
   );

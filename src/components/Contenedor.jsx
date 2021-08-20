@@ -4,10 +4,10 @@ import { Hidden, makeStyles } from "@material-ui/core";
 
 import Navbar from "./Navbar";
 import Cajon from "./Cajon";
-import Daily from "./daily";
 import Search from "./search";
+import Daily from "./daily";
 
-//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 
 const estilos = makeStyles((theme) => ({
   root: {
@@ -22,17 +22,20 @@ const estilos = makeStyles((theme) => ({
 }));
 
 function Contenedor() {
-  const [dayInfo, setdayInfo] = useState({});
-  const [valueSearch, setvalueSearch] = useState("");
-  const [abrir, setabrir] = useState(false);
+  const [dayInfo, setdayInfo] = useState({});//info del dia actual/seleccionado de listas
+  const [valueSearch, setvalueSearch] = useState("");//ña busqueda que proviene de search
+  const [abrir, setabrir] = useState(false);//que se va a mostrar
+
 
   function handleContenedor(e) {
     //console.log(e,"webs");
     setdayInfo(e);
+    setabrir(false)
   }
 
   function handleSearch(e) {
     setvalueSearch(e);
+    setabrir(true)
   }
 
   const accionAbrir = () => {
@@ -62,12 +65,10 @@ function Contenedor() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         
-        {!!valueSearch
-        ?<Search search={valueSearch} />
-        :<Daily datos={dayInfo} />
+        {abrir
+        ?<Search search={valueSearch}/>
+        :<Daily datos={dayInfo}/>
         }
-        
-
         
       </main>
     </div>

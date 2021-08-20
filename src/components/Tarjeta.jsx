@@ -47,7 +47,6 @@ function Tarjeta(props) {
       wrap="nowrap"
       
     >
-      {console.log(props)}
       <Card className={classes.root}>
         <CardHeader
           title={props.infoTarjeta.title}

@@ -4,19 +4,19 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
+  
 } from "@material-ui/core";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
-import HomeIcon from '@material-ui/icons/Home';
+
 import { dias } from "../data/data.json";
 import { Component } from "react";
 
 class Listas extends Component {
-  _handleClick(props) {
-    let { pair } = props;
-    console.log(this, "cerda");
-    this.setState({ accion: pair });
-  }
+  // _handleClick(props) {
+  //   let { pair } = props;
+  //   console.log(this, "cerda");
+  //   this.setState({ accion: pair });
+  // }
   render() {
     return (
       <div>
@@ -34,13 +34,13 @@ class Listas extends Component {
               <ListItemText>{dia.dia}</ListItemText>
             </ListItem>
           ))}
-          <Divider />
-          <ListItem button>
+          {/* <Divider />
+          <ListItem button onClick={()=>this.props.home}>
             <ListItemIcon>
               <HomeIcon/>
             </ListItemIcon>
             <ListItemText primary="Home" />
-          </ListItem>
+          </ListItem> */}
         </List>
       </div>
     );

@@ -1,35 +1,41 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Preview from "./preview";
 import Tarjeta from "./Tarjeta";
 import { dataAnime } from "./Peticiones";
 import Grid from "@material-ui/core/Grid";
 
-class Search extends Component {
-  constructor() {
-    super();
-    this.state = {
-      dAnime: [], //base de datos(todos los datos en array de objetos del fetch)
-      aSelected: "", //string a buscar desde nav bar
-      card: {}, //contiene la seleccion de la tarjera a visualizar
-    };
-  }
 
-  _handleClick(props) {
-    this.setState({ card: props });
-  }
+function Search(props){
+  const [dAnime, setdAnime] = useState([])
+  const [aSelected, setaSelected] = useState("")
+  const [card, setcard] = useState({})
 
-  render() {
-    let { dAnime, aSelected, card } = this.state;
-    if (this.props.search && this.props.search !== this.state.aSelected) {
-      this.setState({ aSelected: this.props.search });
+  function _handleClick(props) {
+    setcard(props) 
+  }
+    if (props.search && props.search !== aSelected) {
+      setaSelected(props.search)
+    }
 
       dataAnime(aSelected).then((res) => {
-        this.setState({ dAnime: res.data.results });
-      });
-    }
+        setdAnime(res.data.results)
+        
+      })
 
     return (
       <>
+        <Grid
+              container
+              spacing={1}
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              alignContent="center"
+              wrap="nowrap"
+            >
+              <h3>{aSelected}</h3>
+            </Grid>
+
         {card.title ? (
           <Tarjeta infoTarjeta={card} />
         ) : (
@@ -40,7 +46,7 @@ class Search extends Component {
                   xs={12}
                   sm={6}
                   md={3}
-                  onClick={() => this._handleClick(item)}
+                  onClick={() => _handleClick(item)}
                   key={item.mal_id}
                 >
                   <Preview className="borderCard" datos={item} />
@@ -52,5 +58,5 @@ class Search extends Component {
       </>
     );
   }
-}
+
 export default Search;
