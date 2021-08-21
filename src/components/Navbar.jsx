@@ -33,13 +33,13 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = (props) => {
   const [busqueda, setbusqueda] = useState("");
 
-  function handleChange(value) {
+  const handleChange= (value)=> {
     setbusqueda(value);
   }
 
-  function handleSubmit(e) {
+  const handleSubmit=(e)=> {
     e.preventDefault();
-    return props.handleSearch(busqueda);
+    if(busqueda)props.handleSearch(busqueda)
   }
 
   const classes = useStyles();

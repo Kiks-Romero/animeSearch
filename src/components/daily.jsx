@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Preview from "./preview";
-import Tarjeta from "./Tarjeta";
 import { infoDias } from "./Peticiones";
 import { Grid } from "@material-ui/core";
 
@@ -27,12 +26,8 @@ class Dayly extends Component {
       info: [], //contiene los datos del fetch o peticion
       seleccion: {}, //al seleccionar una tarjeta se modifica
       dayInfo: "", //trae info del padre
-      active:false
+      active: false,
     };
-  }
-
-  componentWillMount() {
-    console.log("firstthiscalled");
   }
 
   getData(day) {
@@ -75,30 +70,21 @@ class Dayly extends Component {
               <h3>Seleccion diaria</h3>
             )}
           </Grid>
-          {this.state.seleccion.title ? (
-            <>
-              <Tarjeta infoTarjeta={this.state.seleccion} />
-            </>
-          ) : (
-            info.map((item) => {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={3}
-                  className="listado"
-                  onClick={() => this._handleClock(item)}
-                >
-                  <Preview
-                    className="borderCard"
-                    datos={item}
-                    key={item.mal_id}
-                  />
-                </Grid>
-              );
-            })
-          )}
+          {info.map((item) => {
+            return (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                className="listado"
+                onClick={() => this.props.handleTarjeta(item)}
+                key={item.mal_id}
+              >
+                <Preview className="borderCard" datos={item} />
+              </Grid>
+            );
+          })}
         </Grid>
       </>
     );

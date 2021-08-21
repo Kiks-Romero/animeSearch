@@ -6,8 +6,7 @@ import Navbar from "./Navbar";
 import Cajon from "./Cajon";
 import Search from "./search";
 import Daily from "./daily";
-
-
+import Tarjeta from "./Tarjeta";
 
 const estilos = makeStyles((theme) => ({
   root: {
@@ -22,24 +21,30 @@ const estilos = makeStyles((theme) => ({
 }));
 
 function Contenedor() {
-  const [dayInfo, setdayInfo] = useState({});//info del dia actual/seleccionado de listas
-  const [valueSearch, setvalueSearch] = useState("");//ña busqueda que proviene de search
-  const [abrir, setabrir] = useState(false);//que se va a mostrar
+  const [dayInfo, setdayInfo] = useState({}); //info del dia actual/seleccionado de listas
+  const [valueSearch, setvalueSearch] = useState(""); //ña busqueda que proviene de search
+  const [abrir, setabrir] = useState(false); //funcion de nav bar para buen funcionamiento
+  const [visible, setvisible] = useState(0);
+  const [datosTarjeta, setdatosTarjeta] = useState({});
 
-
-  function handleContenedor(e) {
+  const handleContenedor = (e) => {
     //console.log(e,"webs");
     setdayInfo(e);
-    setabrir(false)
-  }
+    setvisible(0);
+  };
 
-  function handleSearch(e) {
+  const handleSearch = (e) => {
     setvalueSearch(e);
-    setabrir(true)
-  }
+    setvisible(1);
+  };
 
   const accionAbrir = () => {
     setabrir(!abrir);
+  };
+
+  const handleTarjeta = (e) => {
+    setdatosTarjeta(e);
+    setvisible(2);
   };
 
   const classes = estilos();
@@ -64,12 +69,14 @@ function Contenedor() {
       </Hidden>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        
-        {abrir
-        ?<Search search={valueSearch}/>
-        :<Daily datos={dayInfo}/>
-        }
-        
+
+        {visible === 0 && (
+          <Daily datos={dayInfo} handleTarjeta={handleTarjeta} />
+        )}
+        {visible === 1 && (
+          <Search search={valueSearch} handleTarjeta={handleTarjeta} />
+        )}
+        {visible === 2 && <Tarjeta infoTarjeta={datosTarjeta} />}
       </main>
     </div>
   );

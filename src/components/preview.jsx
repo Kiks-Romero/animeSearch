@@ -1,13 +1,10 @@
-import React, { Component } from "react";
-//import Card from './card'
-
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
-  Typography
+  Typography,
 } from "@material-ui/core";
 
 const useStyle = makeStyles({
@@ -19,34 +16,32 @@ const useStyle = makeStyles({
   },
 });
 
-class Preview extends Component {
-  render() {
-    const classes = useStyle;
-    let data = {};
+function Preview() {
+  const classes = useStyle;
+  let data = {};
 
-    if (this.props.datos) {
-      data = this.props.datos;
-    } else {
-      data = this.props;
-    }
-
-    return (     
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              className={classes.media}
-              image={data.image_url}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {data.title}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-    );
+  if (this.props.datos) {
+    data = this.props.datos;
+  } else {
+    data = this.props;
   }
+
+  return (
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          className={classes.media}
+          image={data.image_url}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {data.title}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
 }
 
 export default Preview;
