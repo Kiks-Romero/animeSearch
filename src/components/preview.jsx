@@ -16,14 +16,14 @@ const useStyle = makeStyles({
   },
 });
 
-function Preview() {
+function Preview(props) {
   const classes = useStyle;
   let data = {};
 
-  if (this.props.datos) {
-    data = this.props.datos;
+  if (props.datos) {
+    data = props.datos;
   } else {
-    data = this.props;
+    data = props;
   }
 
   return (

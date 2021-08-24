@@ -4,8 +4,8 @@ import { Hidden, makeStyles } from "@material-ui/core";
 
 import Navbar from "./Navbar";
 import Cajon from "./Cajon";
-import Search from "./search";
-import Daily from "./daily";
+import Search from "./Search";
+import Daily from "./Daily";
 import Tarjeta from "./Tarjeta";
 
 const estilos = makeStyles((theme) => ({
@@ -24,7 +24,7 @@ function Contenedor() {
   const [dayInfo, setdayInfo] = useState({}); //info del dia actual/seleccionado de listas
   const [valueSearch, setvalueSearch] = useState(""); //ña busqueda que proviene de search
   const [abrir, setabrir] = useState(false); //funcion de nav bar para buen funcionamiento
-  const [visible, setvisible] = useState(0);
+  const [visible, setvisible] = useState(0); //para saber q imprime en q momento
   const [datosTarjeta, setdatosTarjeta] = useState({});
 
   const handleContenedor = (e) => {

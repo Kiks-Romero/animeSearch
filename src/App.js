@@ -1,5 +1,4 @@
 import React from 'react';
-// import Search from './components/search';
 import './css/main.css'
 
 import {ThemeProvider} from '@material-ui/core/styles'

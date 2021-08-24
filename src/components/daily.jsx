@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Preview from "./preview";
+import React, { useState, useEffect } from "react";
+import Preview from "./Preview";
 import { infoDias } from "./Peticiones";
 import { Grid } from "@material-ui/core";
 
-function fecha() {
+const fecha = () => {
   const fecha = new Date(),
     days = [
       "sunday",
@@ -16,79 +16,58 @@ function fecha() {
     ],
     hoy = days[fecha.getDay()];
   return hoy;
-}
+};
 
-class Dayly extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentDay: fecha(),
-      info: [], //contiene los datos del fetch o peticion
-      seleccion: {}, //al seleccionar una tarjeta se modifica
-      dayInfo: "", //trae info del padre
-      active: false,
+export default function Daily(props) {
+  const [info, setinfo] = useState([]);
+
+  const getData = (day) => {
+    infoDias(day).then((res) => setinfo(res.data[day]));
+  };
+
+  useEffect(() => {
+    getData(fecha());
+  }, []);
+
+  useEffect(() => {
+    getData(props.datos.pair);
+    return () => {
+      setinfo([]);
     };
-  }
+  }, [props.datos.pair]);
 
-  getData(day) {
-    infoDias(day).then((res) => {
-      this.setState({
-        info: res.data[day],
-      });
-    });
-  }
-
-  componentDidMount() {
-    this.getData(fecha());
-  }
-
-  _handleClock(props) {
-    this.setState({ seleccion: props });
-  }
-
-  render() {
-    let { info } = this.state;
-    if (this.props.datos.pair && this.props.datos.pair !== this.state.dayInfo) {
-      this.setState({ dayInfo: this.props.datos.pair });
-      this.getData(this.props.datos.pair);
-    }
-    return (
-      <>
-        <Grid container spacing={1}>
+  return (
+    <Grid container spacing={1}>
+      <Grid
+        container
+        spacing={1}
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        alignContent="center"
+        wrap="nowrap"
+      >
+        {props.datos.dia ? (
+          <h3>{props.datos.dia}</h3>
+        ) : (
+          <h3>Seleccion diaria</h3>
+        )}
+      </Grid>
+      {info.length===0?<h3>cargando</h3>:info.map((item) => {
+        return (
           <Grid
-            container
-            spacing={1}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            alignContent="center"
-            wrap="nowrap"
+            item
+            xs={12}
+            sm={6}
+            md={3}
+            className="listado"
+            onClick={() => props.handleTarjeta(item)}
+            key={item.mal_id}
           >
-            {this.state.dayInfo ? (
-              <h3>{this.props.datos.dia}</h3>
-            ) : (
-              <h3>Seleccion diaria</h3>
-            )}
+            <Preview className="borderCard" datos={item} />
           </Grid>
-          {info.map((item) => {
-            return (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={3}
-                className="listado"
-                onClick={() => this.props.handleTarjeta(item)}
-                key={item.mal_id}
-              >
-                <Preview className="borderCard" datos={item} />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </>
-    );
-  }
+        );
+      })}
+    </Grid>
+  );
 }
-
-export default Dayly;
