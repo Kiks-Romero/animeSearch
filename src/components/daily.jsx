@@ -22,11 +22,13 @@ export default function Daily(props) {
   const [info, setinfo] = useState([]);
 
   const getData = (day) => {
-    infoDias(day).then((res) => setinfo(res.data[day]));
+    day?
+    infoDias(day).then((res) => setinfo(res.data[day]))
+    :console.log("esperando respuesta");
   };
 
   useEffect(() => {
-    getData(fecha());
+    getData(fecha())
   }, []);
 
   useEffect(() => {

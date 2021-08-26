@@ -27,6 +27,21 @@ function Contenedor() {
   const [visible, setvisible] = useState(0); //para saber q imprime en q momento
   const [datosTarjeta, setdatosTarjeta] = useState({});
 
+  const fecha = () => {
+    const fecha = new Date(),
+      days = [
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+      ],
+      hoy = days[fecha.getDay()];
+    return hoy;
+  };
+
   const handleContenedor = (e) => {
     //console.log(e,"webs");
     setdayInfo(e);
@@ -71,7 +86,7 @@ function Contenedor() {
         <div className={classes.toolbar} />
 
         {visible === 0 && (
-          <Daily datos={dayInfo} handleTarjeta={handleTarjeta} />
+          <Daily datos={dayInfo} handleTarjeta={handleTarjeta} dia={fecha()} />
         )}
         {visible === 1 && (
           <Search search={valueSearch} handleTarjeta={handleTarjeta} />
